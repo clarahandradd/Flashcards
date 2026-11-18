@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confere Aí - Mitos e Verdades</title>
+
+    <style>
+        /* Reset básico da aula */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabeçalho */
+        .cabecalho {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cabecalho h1 {
+            font-size: 1.6rem;
+        }
+
+        .cabecalho nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .cabecalho nav a:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Área principal */
+        main {
+            flex: 1;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .instrucao {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .instrucao h2 {
+            font-size: 1.4rem;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .instrucao p {
+            color: #475569;
+        }
+
+        /* Grade dos flashcards */
+        .grade-cartoes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        /* Estrutura do Cartão com efeito 3D */
+        .cartao {
+            width: 280px;
+            height: 320px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .cartao-interno {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        /* Faz o cartão girar ao passar o mouse por cima */
+        .cartao:hover .cartao-interno {
+            transform: rotateY(180deg);
+        }
+
+        .cartao-frente, .cartao-verso {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 18px;
+        }
+
+        /* Frente do cartão */
+        .cartao-frente {
+            background-color: #ffffff;
+            border: 2px solid #cbd5e1;
+        }
+
+        /* Verso do cartão */
+        .cartao-verso {
+            background-color: #1e293b;
+            color: #ffffff;
+            transform: rotateY(180deg);
+            padding: 22px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .cartao-imagem {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .cartao-frente p {
+            padding: 15px 18px 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+            color: #1e293b;
+        }
+
+        .dica-mouse {
+            font-size: 0.8rem;
+            color: #2563eb;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .selo {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .selo-mito {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .selo-verdade {
+            background-color: #22c55e;
+            color: white;
+        }
+
+        .cartao-verso p {
+            font-size: 0.98rem;
+            line-height: 1.5;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="cabecalho">
+        <h1>Confere Aí 🔍</h1>
+        <nav>
+            <a href="#">Início</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="instrucao">
+            <h2>Teste seus conhecimentos contra Fake News</h2>
+            <p>Passe o mouse sobre cada cartão para virar e descobrir se a afirmação é Mito ou Verdade.</p>
+        </section>
+
+        <section class="grade-cartoes">
+            <!-- Cartão 1 -->
+            <article class="cartao">
+                <div class="cartao-interno">
+                    <div class="cartao-frente">
+                        <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&auto=format&fit=crop" alt="Barra de chocolate" class="cartao-imagem">
+                        <p>Novo estudo prova que comer chocolate cura a gripe?</p>
+                        <span class="dica-mouse">Passe o mouse para ver ↻</span>
+                    </div>
+                    <div class="cartao-verso">
+                        <div>
+                            <span class="selo selo-mito">Mito!</span>
+                            <p>Manchete enganosa. O cacau tem antioxidantes, mas não existe cura milagrosa para gripe. Desconfie de títulos sem link para o estudo.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Cartão 2 -->
+            <article class="cartao">
+                <div class="cartao-interno">
+                    <div class="cartao-frente">
+                        <img src="https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/mm1012723121410486.jpg?w=800" alt="Pinguim" class="cartao-imagem">
+                        <p>Pinguins escolhem um único parceiro para a vida toda?</p>
+                        <span class="dica-mouse">Passe o mouse para ver ↻</span>
+                    </div>
+                    <div class="cartao-verso">
+                        <div>
+                            <span class="selo selo-mito">Mito!</span>
+                            <p>Apesar de serem fiéis durante uma temporada de reprodução, a maioria das espécies troca de parceiro nos anos seguintes.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Cartão 3 -->
+            <article class="cartao">
+                <div class="cartao-interno">
+                    <div class="cartao-frente">
+                        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop" alt="Jornal e leitura" class="cartao-imagem">
+                        <p>Agências como Lupa, Aos Fatos e E-Farsas ajudam a checar boatos?</p>
+                        <span class="dica-mouse">Passe o mouse para ver ↻</span>
+                    </div>
+                    <div class="cartao-verso">
+                        <div>
+                            <span class="selo selo-verdade">Verdade!</span>
+                            <p>Essas equipes profissionais verificam notícias suspeitas diariamente e mostram as fontes oficiais para você não cair em ciladas.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Cartão 4 -->
+            <article class="cartao">
+                <div class="cartao-interno">
+                    <div class="cartao-frente">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop" alt="Celular e redes sociais" class="cartao-imagem">
+                        <p>Uma foto chocante nas redes sociais sempre mostra algo que acabou de acontecer?</p>
+                        <span class="dica-mouse">Passe o mouse para ver ↻</span>
+                    </div>
+                    <div class="cartao-verso">
+                        <div>
+                            <span class="selo selo-mito">Mito!</span>
+                            <p>Muitas fotos são antigas, de outros países ou geradas por IA. Use a busca reversa de imagens antes de compartilhar.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>Projeto Confere Aí - Desenvolvido com HTML e CSS</p>
+    </footer>
+
+</body>
+</html>
